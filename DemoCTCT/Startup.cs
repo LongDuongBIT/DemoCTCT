@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using DemoCTCT.Data;
@@ -11,6 +8,7 @@ using DemoCTCT.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using DemoCTCT.Services;
 
 namespace DemoCTCT
 {
@@ -47,6 +45,8 @@ namespace DemoCTCT
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddTransient<IActivityServices, ActivityServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
