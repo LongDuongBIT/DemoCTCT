@@ -8,7 +8,12 @@ namespace DemoCTCT.Services
     {
         public async Task GetActivity(string mssv)
         {
-            //await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
+            var fetcher = new BrowserFetcher();
+            if (await fetcher.CanDownloadAsync(BrowserFetcher.DefaultRevision))
+            {
+                await fetcher.DownloadAsync(BrowserFetcher.DefaultRevision);
+            }
+
             var browser = await Puppeteer.LaunchAsync(new LaunchOptions
             {
                 Headless = true
